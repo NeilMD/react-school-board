@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import {Button} from './components/ui/button';
-import './App.css'
+import {Button} from '@/components/ui/button';
+import '@/App.css'
 import { CarouselDemo } from './components/demo/CarouselDemo';
 
 
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <Button>Hello,</Button>
+      <Button variant="destructive">Button</Button>
       <CarouselDemo></CarouselDemo>
     </>
   )
