@@ -1,16 +1,19 @@
-@import 'tailwindcss';
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
 @plugin 'tailwindcss-animate';
-
 @custom-variant dark (&:is(.dark *));
 
 @layer base {
   body {
-    @apply w-full h-full  
+    @apply h-full w-full;
   }
 
   #root {
-    @apply w-full h-screen
+    @apply h-screen w-full;
+  }
+
+  * {
+    @apply box-border font-roboto;
   }
 }
 
@@ -39,7 +42,8 @@
   --chart-3: hsl(197 37% 24%);
   --chart-4: hsl(43 74% 66%);
   --chart-5: hsl(27 87% 67%);
-  --radius: 0.6rem}
+  --radius: 0.6rem;
+}
 .dark {
   --background: hsl(20 14.3% 4.1%);
   --foreground: hsl(60 9.1% 97.8%);
@@ -64,7 +68,8 @@
   --chart-2: hsl(160 60% 45%);
   --chart-3: hsl(30 80% 55%);
   --chart-4: hsl(280 65% 60%);
-  --chart-5: hsl(340 75% 55%)}
+  --chart-5: hsl(340 75% 55%);
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -95,4 +100,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --font-roboto: "Roboto", sans-serif;
+  --color-home: #eff6ff;
+  --color-border: #bfdbfe;
 }
