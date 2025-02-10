@@ -5,7 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @layer base {
+  body {
+    @apply w-full h-full  
+  }
 
+  #root {
+    @apply w-full h-screen
+  }
 }
 
 :root {
