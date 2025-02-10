@@ -35,7 +35,7 @@ function Post() {
   const PostBody = () => {
     return (
       <div className="post-body">
-        <h5 className="mt-6 mb-3 font-bold text-cyan-600">
+        <h5 className="mt-6 mb-3 text-[20px] font-bold text-cyan-600">
           Make a Difference: Join Our School Volunteer Event!
         </h5>
         <span className="mt-3 mb-6 block leading-[1.5] font-light">
