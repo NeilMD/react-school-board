@@ -21,7 +21,7 @@ function Post() {
         <div className="flex basis-2/3 flex-row justify-end">
           <Badge
             className={
-              "px- rounded-[20px] border-none bg-cyan-600 px-5 font-light text-white"
+              "rounded-[20px] border-none bg-cyan-600 px-5 font-light text-white"
             }
             variant="outline">
             #Volunteer
@@ -31,9 +31,9 @@ function Post() {
     );
   };
 
-  return (
-    <div className="m-4 h-fit rounded-[20px] border border-(--color-border) bg-white p-8">
-      <PostHeader /> {/* Inline usage */}
+  // Define PostBody inline
+  const PostBody = () => {
+    return (
       <div className="post-body">
         <h5 className="mt-6 mb-3 font-bold text-cyan-600">
           Make a Difference: Join Our School Volunteer Event!
@@ -45,14 +45,20 @@ function Post() {
         </span>
         <div className="mb-2 flex flex-row items-center gap-x-2">
           <Calendar className="opacity-50" size={24}></Calendar>
-          <span className="text-base font-light opacity-45">Feb 6, 2025 </span>
+          <span className="text-base font-light opacity-45">Feb 6, 2025</span>
         </div>
         <div className="flex flex-row items-center gap-x-2">
           <Map className="opacity-50" size={24}></Map>
-          <span className="text-base font-light opacity-45">Feb 6, 2025 </span>
+          <span className="text-base font-light opacity-45">Main Campus</span>
         </div>
       </div>
-      <div></div>
+    );
+  };
+
+  return (
+    <div className="home-card">
+      <PostHeader /> {/* Inline usage of PostHeader */}
+      <PostBody /> {/* Inline usage of PostBody */}
     </div>
   );
 }

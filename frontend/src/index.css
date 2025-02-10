@@ -3,20 +3,6 @@
 @plugin 'tailwindcss-animate';
 @custom-variant dark (&:is(.dark *));
 
-@layer base {
-  body {
-    @apply h-full w-full;
-  }
-
-  #root {
-    @apply h-screen w-full;
-  }
-
-  * {
-    @apply box-border font-roboto;
-  }
-}
-
 :root {
   --background: hsl(0 0% 100%);
   --foreground: hsl(20 14.3% 4.1%);
@@ -103,5 +89,34 @@
 
   --font-roboto: "Roboto", sans-serif;
   --color-home: #eff6ff;
-  --color-border: #bfdbfe;
+  --color-blue-border: #bfdbfe;
+  --color-text-base: #3f3f46;
+}
+
+@layer base {
+  body {
+    @apply h-full w-full;
+  }
+
+  #root {
+    @apply h-screen w-full;
+  }
+
+  * {
+    @apply box-border font-roboto;
+  }
+
+  .home-card {
+    @apply m-4 h-fit rounded-[20px] border border-blue-border bg-white p-8;
+  }
+
+  #sidebar-list {
+    li {
+      @apply mt-4 flex cursor-pointer items-center gap-4 rounded-xl px-4 py-2 transition duration-300 ease-in-out hover:bg-accent;
+    }
+  }
+
+  .acive-nav {
+    @apply bg-(--color-home);
+  }
 }
