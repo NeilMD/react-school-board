@@ -3,6 +3,7 @@ import Post from "./components/post";
 import Sidebar from "./components/sidebar";
 import NavHeader from "./components/navheader";
 import CalendarSideBar from "./components/calendarsidebar";
+import { SharePost } from "@/pages/home/components/sharepost";
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
           <Sidebar />
         </div>
         <div className="flex basis-4/6 flex-col">
+          <SharePost></SharePost>
           <Post />
           <Post />
           <Post />
