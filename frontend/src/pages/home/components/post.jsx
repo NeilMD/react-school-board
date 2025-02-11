@@ -1,5 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { MessageSquareTextIcon } from "lucide-react";
+import { Bookmark } from "lucide-react";
 import { Calendar, Map } from "lucide-react";
 import React from "react";
 
@@ -45,11 +49,29 @@ function Post() {
         </span>
         <div className="mb-2 flex flex-row items-center gap-x-2">
           <Calendar className="opacity-50" size={24}></Calendar>
-          <span className="text-base font-light opacity-45">Feb 6, 2025</span>
+          <span className="text-base font-light opacity-65">Feb 6, 2025</span>
         </div>
         <div className="flex flex-row items-center gap-x-2">
           <Map className="opacity-50" size={24}></Map>
-          <span className="text-base font-light opacity-45">Main Campus</span>
+          <span className="text-base font-light opacity-65">Main Campus</span>
+        </div>
+      </div>
+    );
+  };
+
+  const PostFooter = () => {
+    return (
+      <div>
+        <Separator className="mt-6" />
+        <div className="columns-2 divide-x divide-gray-100 py-2 text-center text-gray-500">
+          <div className="hover-effect flex justify-center gap-2 rounded-md py-2">
+            <MessageSquareTextIcon className="scale-x-[-1]" />
+            Comment
+          </div>
+          <div className="hover-effect flex justify-center gap-2 rounded-md py-2">
+            <Bookmark />
+            Save
+          </div>
         </div>
       </div>
     );
@@ -59,6 +81,7 @@ function Post() {
     <div className="home-card">
       <PostHeader /> {/* Inline usage of PostHeader */}
       <PostBody /> {/* Inline usage of PostBody */}
+      <PostFooter />
     </div>
   );
 }

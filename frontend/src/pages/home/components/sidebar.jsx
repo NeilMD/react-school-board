@@ -7,10 +7,8 @@ import React from "react";
 
 function Sidebar() {
   return (
-    <div className="home-card px-6 py-4">
-      <ul
-        id="sidebar-list"
-        className="font-base list-none text-text-base uppercase">
+    <div className="home-card px-6 pt-4 pb-8">
+      <ul id="sidebar-list" className="font-base text-text-base uppercase">
         <li className="active-nav">
           <HomeIcon></HomeIcon>
           <span>Home</span>

@@ -107,16 +107,20 @@
   }
 
   .home-card {
-    @apply m-4 h-fit rounded-[20px] border border-blue-border bg-white p-8 drop-shadow-md;
+    @apply m-4 h-fit rounded-[20px] border border-blue-border bg-white p-8 pb-2 drop-shadow-md;
   }
 
   #sidebar-list {
     li {
-      @apply mt-4 flex cursor-pointer items-center gap-4 rounded-3xl px-4 py-2 transition duration-200 ease-in-out hover:bg-(--color-home);
+      @apply mt-4 flex cursor-pointer items-center gap-4 rounded-3xl px-4 py-2 transition duration-300 ease-in-out hover:bg-(--color-home);
     }
   }
 
   .acive-nav {
     @apply bg-(--color-home);
+  }
+
+  .hover-effect {
+    @apply cursor-pointer transition duration-300 ease-in-out hover:bg-(--color-home) hover:text-gray-800;
   }
 }

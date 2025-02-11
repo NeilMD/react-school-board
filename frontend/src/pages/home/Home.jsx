@@ -1,11 +1,12 @@
 import React from "react";
-import Post from "./post/Post";
-import Sidebar from "./sidebar/Sidebar";
-import NavHeader from "./NavHeader/NavHeader";
+import Post from "./components/post";
+import Sidebar from "./components/sidebar";
+import NavHeader from "./components/navheader";
+import CalendarSideBar from "./components/calendarsidebar";
 
 function Home() {
   return (
-    <div className="flex h-fit flex-col bg-(--color-home)">
+    <div className="flex h-fit min-h-full flex-col bg-(--color-home)">
       <header>
         <NavHeader />
       </header>
@@ -20,7 +21,9 @@ function Home() {
           <Post />
           <Post />
         </div>
-        {/* <div className="basis-1/4">Right Sidebar</div> */}
+        <div className="basis-1/4">
+          <CalendarSideBar />
+        </div>
       </main>
       <footer>footer</footer>
     </div>
