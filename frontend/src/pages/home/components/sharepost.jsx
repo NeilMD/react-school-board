@@ -4,7 +4,7 @@ import * as React from "react";
 export function SharePost() {
   return (
     <div className="home-card main-share-post-container flex cursor-pointer flex-col space-y-2 p-4">
-      <div className="flex w-full items-start space-x-4">
+      <div className="flex w-full items-center space-x-4">
         {/* Text Area */}
         <textarea
           className="transition-default w-[92%] resize-none rounded-xl bg-gray-100 p-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -14,8 +14,8 @@ export function SharePost() {
         />
 
         {/* Submit Button */}
-        <button className="submit-post-button mt-2 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-600 font-semibold text-white hover:bg-cyan-500">
-          <span className="text-2xl font-light">+</span>
+        <button className="flex h-12 w-12 items-center justify-center rounded-full bg-(--academix-blue) font-semibold text-black">
+          <span className="text-2xl font-extralight">+</span>
         </button>
       </div>
 
