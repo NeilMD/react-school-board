@@ -26,11 +26,13 @@ function NavHeader() {
       <div className="mx-4 flex basis-1/3 justify-end">
         <Popover>
           <PopoverTrigger>
-            <div className="group transition-default rounded-full bg-gray-200 p-2 hover:bg-gray-300">
-              <Bell className="stroke-gray-400 stroke-1 group-hover:stroke-white" />
+            <div className="group transition-default cursor-pointer rounded-full border border-transparent bg-gray-200 p-2 hover:border-gray-300 hover:bg-gray-100">
+              <Bell className="stroke-gray-400 stroke-1 group-hover:stroke-(--color-cyan-600)" />
             </div>
           </PopoverTrigger>
-          <PopoverContent className="border-none">
+          <PopoverContent
+            align="end"
+            className="border-none bg-gray-300 font-light text-black">
             Place content for the popover here.
           </PopoverContent>
         </Popover>
