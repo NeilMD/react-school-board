@@ -107,7 +107,7 @@
   }
 
   .home-card {
-    @apply m-4 h-fit rounded-[20px] border border-blue-border bg-white p-8 pb-2 drop-shadow-md;
+    @apply m-4 h-fit rounded-[10px] border border-blue-border bg-white p-8 pb-2 drop-shadow-md;
   }
 
   #sidebar-list {

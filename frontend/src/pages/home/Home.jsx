@@ -6,7 +6,7 @@ import CalendarSideBar from "./components/calendarsidebar";
 
 function Home() {
   return (
-    <div className="flex h-fit min-h-full flex-col bg-(--color-home)">
+    <div className="relative flex h-fit min-h-full flex-col bg-(--color-home)">
       <header>
         <NavHeader />
       </header>
