@@ -12,10 +12,10 @@ function Home() {
         <NavHeader />
       </header>
       <main className="mt-8 flex grow flex-row gap-4">
-        <div className="max-w-[282px] basis-1/4">
+        <div className="max-w-[282px] basis-1/10">
           <Sidebar />
         </div>
-        <div className="flex basis-4/6 flex-col">
+        <div className="flex basis-8/10 flex-col">
           <SharePost></SharePost>
           <Post />
           <Post />
@@ -23,7 +23,7 @@ function Home() {
           <Post />
           <Post />
         </div>
-        <div className="basis-1/4">
+        <div className="basis-1/10">
           <CalendarSideBar />
         </div>
       </main>
