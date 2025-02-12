@@ -14,7 +14,7 @@ export function SharePost() {
         />
 
         {/* Submit Button */}
-        <button className="flex h-12 w-12 items-center justify-center rounded-full bg-(--academix-blue) font-semibold text-black">
+        <button className="transition-default flex h-12 w-12 items-center justify-center rounded-full bg-(--academix-blue) font-semibold text-black hover:opacity-75">
           <span className="text-2xl font-extralight">+</span>
         </button>
       </div>

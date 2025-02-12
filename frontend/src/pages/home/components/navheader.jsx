@@ -2,6 +2,12 @@ import React from "react";
 import AcademixLogo from "@/assets/academix.svg";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Bell } from "lucide-react";
 
 function NavHeader() {
   return (
@@ -16,6 +22,18 @@ function NavHeader() {
           placeholder="Search"
         />
         <Search className="transition-default color-gray color-gray-100 absolute inset-y-1 right-0 mx-3 stroke-2 text-gray-400 peer-focus:text-gray-600" />
+      </div>
+      <div className="mx-4 flex basis-1/3 justify-end">
+        <Popover>
+          <PopoverTrigger>
+            <div className="group transition-default rounded-full bg-gray-200 p-2 hover:bg-gray-300">
+              <Bell className="stroke-gray-400 stroke-1 group-hover:stroke-white" />
+            </div>
+          </PopoverTrigger>
+          <PopoverContent className="border-none">
+            Place content for the popover here.
+          </PopoverContent>
+        </Popover>
       </div>
     </div>
   );
