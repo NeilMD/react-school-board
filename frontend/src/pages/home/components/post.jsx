@@ -63,7 +63,7 @@ function Post() {
     return (
       <div>
         <Separator className="mt-6" />
-        <div className="columns-2 divide-x divide-gray-100 py-2 text-center text-gray-500">
+        <div className="columns-2 divide-gray-100 py-2 text-center text-gray-500">
           <div className="hover-effect flex justify-center gap-2 rounded-md py-2">
             <MessageSquareTextIcon className="scale-x-[-1]" />
             Comment
