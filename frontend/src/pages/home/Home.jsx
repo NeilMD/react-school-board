@@ -4,6 +4,7 @@ import Sidebar from "./components/sidebar";
 import NavHeader from "./components/navheader";
 import CalendarSideBar from "./components/calendarsidebar";
 import { SharePost } from "@/pages/home/components/sharepost";
+import { Separator } from "@/components/ui/separator";
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
         </div>
         <div className="flex basis-8/10 flex-col">
           <SharePost></SharePost>
+          <Separator className="mx-4 mt-4 mb-8 w-[unset] bg-(--academix-blue)" />
           <Post />
           <Post />
           <Post />
