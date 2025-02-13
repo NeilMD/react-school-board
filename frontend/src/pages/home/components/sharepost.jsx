@@ -13,7 +13,7 @@ export function SharePost() {
   const user = {
     id: 1,
     name: "Chloe",
-    avatar: "https://avatar.com",
+    avatar: "../../../assets/chloechoi.jpeg",
   };
 
   // manages the state of the post

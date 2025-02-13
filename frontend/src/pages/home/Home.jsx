@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 
 function Home() {
   return (
-    <div className="relative flex h-fit min-h-full flex-col bg-(--color-home)">
+    <div className="relative flex h-fit min-h-full max-w-[1440px] flex-col bg-(--color-home)">
       <header>
         <NavHeader />
       </header>
