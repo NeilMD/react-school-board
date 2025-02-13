@@ -1,5 +1,6 @@
-import { Calendar, Image, MapPin } from "lucide-react";
+import { Calendar, Image, MapPin, AtSign } from "lucide-react";
 import React, {useState, useEffect} from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
 
 export function SharePost() {
 
@@ -15,14 +16,12 @@ export function SharePost() {
         return JSON.parse(localStorage.getItem("posts")) || []; // will be passed into the local storage for now since no db 
     });
     const [content, setContent] = useState("");
+    const [title, setTitle] = useState("");
+    const [tags, setTags] = useState("");
     const [image, setImage] = useState(null);
     const [location, setLocation] = useState("");
     const [date, setDate] = useState("");
-    const [showInputs, setShowInputs] = useState({
-        image: false,
-        date: false,
-        location: false,
-    });
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     useEffect(() => {
         localStorage.setItem("posts", JSON.stringify(posts)); // saves post into the local storage for now
@@ -37,6 +36,7 @@ export function SharePost() {
             userId: user.id,         
             userName: user.name,     
             userAvatar: user.avatar,
+            title,
             content,
             image,
             location,
@@ -46,84 +46,169 @@ export function SharePost() {
     
         setPosts([newPost, ...posts]);
         setContent("");
+        setTitle("");
+        setTags("");
         setImage(null);
         setLocation("");
         setDate("");
-        setShowInputs({ image: false, date: false, location: false });
+        setDialogOpen(false);
       };
 
     return (
         <div className="home-card main-share-post-container flex cursor-pointer flex-col space-y-2 p-4">
-        <div className="flex w-full items-center space-x-4">
-            {/* Text Area */}
-            <textarea
-            className="transition-default w-[92%] resize-none rounded-xl bg-gray-100 p-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            placeholder="Share a post in this group"
-            rows="1"
-            style={{ minHeight: "40px" }}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            />
+            <div className="flex w-full items-center space-x-4">
+                {/* All of the buttons open up the dialog box */}
+                {/* Text Area for share a post*/}
+                <textarea
+                className="transition-default w-[92%] resize-none rounded-xl bg-gray-100 p-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                placeholder="Share a post in this group"
+                rows="1"
+                style={{ minHeight: "40px" }}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                />
 
-            {/* Submit Button */}
-            <button className="flex h-12 w-12 items-center justify-center rounded-full bg-(--academix-blue) font-semibold text-black"
-            onClick={handlePostSubmit}>
-            <span className="text-2xl font-extralight">+</span>
-            </button>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex items-center gap-x-2 space-x-1">
-            {/* Image Icon */}
-            <div className="hover-effect image-icon transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2"
-            onClick={() => setShowInputs({ ...showInputs, image: !showInputs.image })}>
-            <Image className="text-gray-500" />
-            <span className="text-gray-600">Image</span>
+                {/* Button for share a post */}
+                <button className="flex h-12 w-12 items-center justify-center rounded-full bg-(--academix-blue) font-semibold text-black"
+                onClick={() => setDialogOpen(true)}>
+                <span className="text-2xl font-extralight">+</span>
+                </button>
             </div>
 
-            {/* Calendar Icon */}
-            <div className="hover-effect calendar-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2"
-            onClick={() => setShowInputs({ ...showInputs, date: !showInputs.date })}>
-            <Calendar className="text-gray-500" />
-            <span className="text-gray-600">Calendar</span>
+            <div className="flex items-center gap-x-2 space-x-1">
+                {/* Image Icon */}
+                <div className="hover-effect image-icon transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2"
+                 onClick={() => setDialogOpen(true)}>
+                <Image className="text-gray-500" />
+                <span className="text-gray-600">Image</span>
+                </div>
+
+                {/* Calendar Icon */}
+                <div className="hover-effect calendar-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2"
+                 onClick={() => setDialogOpen(true)}>
+                <Calendar className="text-gray-500" />
+                <span className="text-gray-600">Calendar</span>
+                </div>
+
+                {/* Location Icon */}
+                <div className="hover-effect location-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2"
+                 onClick={() => setDialogOpen(true)}>
+                <MapPin className="text-gray-500" />
+                <span className="text-gray-600">Location</span>
+                </div>
+
+                {/* Mention Icon */}
+                <div className="hover-effect location-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2"
+                 onClick={() => setDialogOpen(true)}>
+                <AtSign className="text-gray-500" />
+                <span className="text-gray-600">Mention</span>
+                </div>
             </div>
 
-            {/* Location Icon */}
-            <div className="hover-effect location-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2"
-            onClick={() => setShowInputs({ ...showInputs, location: !showInputs.location })}>
-            <MapPin className="text-gray-500" />
-            <span className="text-gray-600">Location</span>
-            </div>
-        </div>
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                <DialogTrigger asChild>
+                    <button></button>
+                </DialogTrigger>
+                <DialogContent className="w-[900px] max-w-full p-4 rounded-xl bg-white overflow-y-auto">
+                    <DialogHeader>
+                    <DialogTitle className="font-bold text-blue-400 ml-3 mt-3">Share a post</DialogTitle>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                        {/* Select Category Section */}
+                        <div className="flex items-center ml-3">
+                            <label htmlFor="category" className="mr-2 text-blue-400 font-bold">Category:</label>
+                            <select
+                                id="category"
+                                className="text-blue-400"
+                            >
+                                <option value="volunteer">Volunteer</option>
+                                <option value="school">School</option>
+                            </select>
+                        </div>
 
-        {/* Optional Inputs -- need to have UI fixed*/} 
-        <div className="mt-2 space-y-2">
-                {showInputs.image && (
-                    <input
-                        type="file"
-                        accept="image/*"
-                        className="w-full bg-gray-100 p-2 rounded"
-                        onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))} 
-                    />
-                )}
-                {showInputs.date && (
-                    <input
-                        type="date"
-                        className="w-full bg-gray-100 p-2 rounded"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                    />
-                )}
-                {showInputs.location && (
-                    <input
-                        type="text"
-                        className="w-full bg-gray-100 p-2 rounded"
-                        placeholder="Add location"
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
-                    />
-                )}
-            </div>
+                        {/* Title Section */}
+                        <div>
+                            <input
+                            type="text"
+                            id="title"
+                            placeholder="Title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                            className="w-[95%] p-4 rounded-xl bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none ml-3"
+                            />
+                        </div>
+
+                        {/* Content Section */}
+                        <div>
+                            <textarea
+                            className="w-[95%] resize-none rounded-xl bg-gray-100 p-4 focus:ring-2 focus:ring-blue-500 focus:outline-none ml-3"
+                            placeholder="Share post in this group"
+                            value={content}
+                            onChange={(e) => setContent(e.target.value)}
+                            required
+                            />
+                        </div>
+
+                        {/* Tags Section */}
+                        <div>
+                            <input
+                            type="text"
+                            id="postTags"
+                            placeholder="Tags"
+                            value={tags}
+                            onChange={(e) => setTags(e.target.value)}
+                            className="w-[47%] p-4 rounded-xl bg-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none ml-3"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Buttons for Image, Calendar, Location, Mention, and Post */}
+                    <div className="flex items-center gap-4">
+                        <label htmlFor="fileInput" className="hover-effect location-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2">
+                            <Image className="text-gray-500" /> 
+                            <span className="text-gray-600">Image</span>
+                        </label>
+                        <input
+                            id="fileInput"
+                            type="file"
+                            accept="image/*"
+                            hidden
+                            onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setDate(new Date().toISOString().split('T')[0])}
+                            className="hover-effect location-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2"
+                        >
+                            <Calendar className="text-gray-500" /> 
+                            <span className="text-gray-600">Calendar</span>
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setLocation(prompt("Enter location"))}
+                            className="hover-effect location-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2"
+                        >
+                            <MapPin className="text-gray-500" /> 
+                            <span className="text-gray-600">Location</span>
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setLocation(prompt("Tag someone"))}
+                            className="hover-effect mention-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2"
+                        >
+                            <AtSign className="text-gray-500" /> 
+                            <span className="text-gray-600">Mention</span>
+                        </button>
+                        <button
+                            onClick={handlePostSubmit}
+                            className="bg-(--academix-blue) text-black rounded-xl flex cursor-pointer items-center space-x-2 px-4 py-2 ml-[200px]"
+                            >
+                            Post
+                        </button>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }
