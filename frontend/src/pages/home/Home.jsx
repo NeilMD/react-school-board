@@ -3,6 +3,7 @@ import Post from "./components/post";
 import Sidebar from "./components/sidebar";
 import NavHeader from "./components/navheader";
 import CalendarSideBar from "./components/calendarsidebar";
+import FormPost from "./components/formpost";
 import { SharePost } from "@/pages/home/components/sharepost";
 import { Separator } from "@/components/ui/separator";
 
@@ -18,6 +19,7 @@ function Home() {
         </div>
         <div className="flex basis-8/10 flex-col">
           <SharePost></SharePost>
+          <FormPost />
           <Separator className="mx-4 mt-4 mb-8 w-[unset] bg-(--academix-blue)" />
           <Post />
           <Post />
