@@ -13,10 +13,18 @@ module.exports = ({
   );
 
   // POST /api/post/edit
-  router.post("/edit", middleware.postMiddleware, () => {});
+  router.post(
+    "/edit",
+    middleware.postMiddleware,
+    controllers.postController.edit
+  );
 
   // POST /api/post/add
-  router.post("/delete", () => {});
+  router.post(
+    "/delete",
+    middleware.postMiddleware,
+    controllers.postController.delete
+  );
 
   return router;
 };

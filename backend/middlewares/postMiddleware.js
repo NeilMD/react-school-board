@@ -1,7 +1,16 @@
 module.exports = ({ logger, validator }) => {
   return (req, res, next) => {
     logger.info("Post Middleware: START");
-    const { error } = validator.postValidator.add(req.body);
+
+    let errMsg = null;
+    if (req.originalUrl === "/api/post/add") {
+      errMsg = validator.postValidator.add(req.body);
+    } else if (req.originalUrl === "/api/post/edit") {
+      errMsg = validator.postValidator.edit(req.body);
+    } else if (req.originalUrl === "/api/post/delete") {
+    }
+
+    const { error } = errMsg;
     if (error) {
       return res
         .status(400)
