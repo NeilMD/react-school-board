@@ -1,13 +1,15 @@
-module.exports = ({ logger, router, middleware, asyncHandler }) => {
+module.exports = ({
+  logger,
+  router,
+  middleware,
+  asyncHandler,
+  controllers,
+}) => {
   // POST /api/post/add
   router.post(
     "/add",
     middleware.postMiddleware,
-    asyncHandler((req, res) => {
-      logger.info("POST START");
-      logger.info("POST END");
-      res.status(200).json({ message: "Post Added Successfully" });
-    })
+    controllers.postController.add
   );
 
   // POST /api/post/edit
