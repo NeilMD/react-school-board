@@ -44,6 +44,7 @@ module.exports = ({ asyncHandler, logger, models }) => {
       tags: req.body.tags,
       programs: req.body.programs,
       courses: req.body.courses,
+      updatedAt: Date.now(),
     };
 
     const options = { upsert: false, new: true, setDefaultsOnInsert: true };

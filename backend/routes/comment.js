@@ -1,14 +1,30 @@
-module.exports = ({ router, logger }) => {
+module.exports = ({
+  logger,
+  router,
+  middleware,
+  asyncHandler,
+  controllers,
+}) => {
   // POST /api/post/add
-  router.post("/add", () => {
-    logger.info(`Comment Route START`);
-  });
+  router.post(
+    "/add",
+    middleware.commentMiddleware,
+    controllers.commentController.add
+  );
 
   // POST /api/post/edit
-  router.post("/edit", () => {});
+  router.post(
+    "/edit",
+    middleware.commentMiddleware,
+    controllers.commentController.edit
+  );
 
   // POST /api/post/add
-  router.post("/delete", () => {});
+  router.post(
+    "/delete",
+    middleware.commentMiddleware,
+    controllers.commentController.delete
+  );
 
   return router;
 };
