@@ -8,6 +8,7 @@ module.exports = ({ logger, validator }) => {
     } else if (req.originalUrl === "/api/post/edit") {
       errMsg = validator.postValidator.edit(req.body);
     } else if (req.originalUrl === "/api/post/delete") {
+      errMsg = validator.postValidator.delete(req.body);
     }
 
     const { error } = errMsg;

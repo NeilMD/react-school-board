@@ -65,6 +65,23 @@ module.exports = ({ asyncHandler, logger, models }) => {
     logger.info("postController/edit: END");
     res.status(201).json(res.locals.objResult);
   });
-  postController.delete = asyncHandler((req, res) => {});
+  postController.delete = asyncHandler(async (req, res) => {
+    logger.info("postController/delete: START");
+
+    const filter = { _id: req.body._id }; // Find the post by ID
+    const result = await Post.deleteOne(filter);
+
+    if (result.deletedCount > 0) {
+      res.locals.objResult.numCode = 0;
+      res.locals.objResult.objData = result;
+      res.locals.objResult.objSucess = "Successfully deleted";
+    } else {
+      res.locals.objResult.numCode = 1;
+      res.locals.objResult.objSucess = "Failed deleting";
+    }
+
+    logger.info("postController/delete: END");
+    res.status(201).json(res.locals.objResult);
+  });
   return postController;
 };
