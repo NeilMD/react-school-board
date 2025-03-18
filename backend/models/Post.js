@@ -20,15 +20,6 @@ const postSchema = Schema({
   courses: [String], // Relevant courses
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
-  comments: [
-    {
-      commentId: { type: Schema.Types.ObjectId, ref: "Comment" },
-      userId: { type: Schema.Types.ObjectId, ref: "User" },
-      content: String,
-      createdAt: { type: Date, default: Date.now },
-      markedAsHelpful: { type: Boolean, default: false },
-    },
-  ],
   upvotes: { type: Number, default: 0 },
   downvotes: { type: Number, default: 0 },
   views: { type: Number, default: 0 },
