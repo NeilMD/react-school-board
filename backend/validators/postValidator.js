@@ -80,5 +80,22 @@ module.exports = ({ logger, joi }) => {
     return postValidationSchema.validate(postData);
   };
 
+  postValidation.delete = (postData) => {
+    logger.info("postValidation/delete : START");
+    // joi Validation Schema for Post
+    const postValidationSchema = joi.object({
+      _id: joi
+        .string()
+        .required()
+        .regex(/^[0-9a-fA-F]{24}$/)
+        .messages({
+          "string.pattern.base": "Invalid ObjectId format for _id.",
+        }),
+    });
+
+    logger.info("postValidation/delete: END");
+    return postValidationSchema.validate(postData);
+  };
+
   return postValidation;
 };
