@@ -3,7 +3,7 @@ import * as React from "react";
 
 export function SharePost() {
   return (
-    <div className="home-card main-share-post-container flex cursor-pointer flex-col space-y-2 p-4">
+    <div className="home-card main-share-post-container flex max-w-[800px] cursor-pointer flex-col space-y-2 p-4">
       <div className="flex w-full items-center space-x-4">
         {/* Text Area */}
         <textarea

@@ -11,9 +11,9 @@ import { Bell } from "lucide-react";
 
 function NavHeader() {
   return (
-    <div className="z-10 flex h-fit w-full items-center bg-white px-4 pt-4 pb-4">
+    <div className="z-10 flex h-fit w-full items-center bg-white px-20 pt-4 pb-4">
       <div className="basis-1/3">
-        <img className="align- h-[46px]" src={AcademixLogo} />
+        <img className="align- h-[40px] w-[240px]" src={AcademixLogo} />
       </div>
       <div className="relative w-2xs basis-1/3">
         <input

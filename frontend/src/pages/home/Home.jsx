@@ -13,14 +13,14 @@ function Home() {
       <header>
         <NavHeader />
       </header>
-      <main className="mt-8 flex grow flex-row gap-4">
+      <main className="mx-10 mt-10 flex grow flex-row gap-4">
         <div className="max-w-[282px] basis-1/10">
           <Sidebar />
         </div>
-        <div className="flex basis-8/10 flex-col">
-          <SharePost></SharePost>
-          <FormPost />
-          <Separator className="mx-4 mt-4 mb-8 w-[unset] bg-(--academix-blue)" />
+        <div className="flex basis-8/10 flex-col items-center">
+          <FormPost></FormPost>
+
+          <Separator className="mx-4 mt-4 mb-8 w-[800px] bg-(--academix-blue)" />
           <Post />
           <Post />
           <Post />

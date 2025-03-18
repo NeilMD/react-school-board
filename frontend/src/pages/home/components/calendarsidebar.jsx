@@ -7,7 +7,7 @@ function CalendarSideBar() {
   const [date, setDate] = useState(new Date());
 
   return (
-    <div className="home-card px-6 pt-4 pb-8 text-[20px] font-bold text-cyan-600">
+    <div className="home-card mx-0 w-[292px] px-6 pt-4 pb-8 text-[20px] font-bold text-cyan-600">
       <h5>Calendar</h5>
       <Separator className="mt-2 mb-6 bg-cyan-600" />
       <Calendar

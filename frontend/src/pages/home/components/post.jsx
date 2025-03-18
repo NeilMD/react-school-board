@@ -78,7 +78,7 @@ function Post() {
   };
 
   return (
-    <div className="home-card">
+    <div className="home-card max-w-[800px]">
       <PostHeader /> {/* Inline usage of PostHeader */}
       <PostBody /> {/* Inline usage of PostBody */}
       <PostFooter />

@@ -7,7 +7,7 @@ import React from "react";
 
 function Sidebar() {
   return (
-    <div className="home-card px-6 pt-4 pb-8">
+    <div className="home-card mx-0 w-[260px] px-6 pt-4 pb-8">
       <ul id="sidebar-list" className="font-base text-text-base uppercase">
         <li className="active-nav">
           <HomeIcon></HomeIcon>
