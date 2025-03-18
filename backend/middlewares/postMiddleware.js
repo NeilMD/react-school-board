@@ -1,6 +1,6 @@
 module.exports = ({ logger, validator }) => {
   return (req, res, next) => {
-    logger.info("POST Middleware: START");
+    logger.info("Post Middleware: START");
     const { error } = validator.postValidator.add(req.body);
     if (error) {
       return res
@@ -8,7 +8,7 @@ module.exports = ({ logger, validator }) => {
         .json({ errors: error.details.map((err) => err.message) });
     }
 
-    logger.info("POST Middleware: END");
+    logger.info("Post Middleware: END");
     next();
   };
 };
