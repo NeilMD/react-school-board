@@ -5,6 +5,7 @@ import NavHeader from "./components/navheader";
 import CalendarSideBar from "./components/calendarsidebar";
 import { SharePost } from "@/pages/home/components/sharepost";
 import { Separator } from "@/components/ui/separator";
+import {AddPostButton, DropdownButton, SearchableTagInput } from "@/pages/home/components/buttons";
 
 function Home() {
   return (
@@ -17,6 +18,13 @@ function Home() {
           <Sidebar />
         </div>
         <div className="flex basis-8/10 flex-col">
+          <div className="flex justify-between">
+            <div className="flex items-center gap-[10px]">
+              <DropdownButton className="ml-[10px]" /> {/* Spacing not correct, needs alignment  */}
+              <SearchableTagInput />
+            </div>
+            <AddPostButton></AddPostButton>
+          </div>
           <SharePost></SharePost>
           <Separator className="mx-4 mt-4 mb-8 w-[unset] bg-(--academix-blue)" />
           <Post />
