@@ -32,8 +32,10 @@ function Home() {
         </header>
         <SharePost open={isDialogOpen} onClose={handleDialogClose} />
         <main className="mx-10 mt-[114px] flex grow flex-row gap-10">
-          <div className="max-w-[282px] basis-1/10">
-            <Sidebar />
+          <div className="max-w-[282px] min-w-[260px] basis-1/10">
+            <div className="fixed">
+              <Sidebar />
+            </div>
           </div>
           <div className="flex basis-8/10 flex-col items-center gap-y-5">
             <div className="flex w-full justify-between">
@@ -53,8 +55,10 @@ function Home() {
               <Post />
             </div>
           </div>
-          <div className="basis-1/10">
-            <CalendarSideBar />
+          <div className="max-w-[292px] min-w-[275px] basis-1/10">
+            <div className="fixed">
+              <CalendarSideBar />
+            </div>
           </div>
         </main>
         <footer>footer</footer>

@@ -130,3 +130,9 @@
     @apply cursor-pointer transition duration-300 ease-in-out hover:bg-(--color-home) hover:text-gray-800;
   }
 }
+
+@layer utilities {
+  .bg-primary {
+    @apply bg-stone-400;
+  }
+}

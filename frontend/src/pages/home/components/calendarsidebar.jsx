@@ -14,9 +14,9 @@ function CalendarSideBar() {
         mode="single"
         selected={date}
         onSelect={setDate}
-        className="rounded-md border border-gray-500 font-light text-gray-700"
+        className="rounded-md border border-none font-light text-gray-700"
       />
-      <h5 className="mt-6">Events</h5>
+      <h5 className="mt-6">Upcoming Events</h5>
       <Separator className="mt-2 mb-6 bg-cyan-600" />
     </div>
   );
