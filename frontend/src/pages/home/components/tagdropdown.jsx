@@ -42,7 +42,7 @@ const TagDropdown = () => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button className="flex h-[40px] w-[100px] items-center justify-center gap-1 rounded-[20px] bg-sky-600 p-2 text-[1rem] font-medium font-normal text-[#ffffff] shadow-sm">
+        <button className="flex h-[40px] w-[100px] cursor-pointer items-center justify-center gap-1 rounded-[20px] bg-sky-600 p-2 text-[1rem] font-medium font-normal text-[#ffffff] shadow-sm">
           <PlusCircle className="h-6 w-6 text-[1rem] text-[#ffffff]" />
           TAGS
         </button>
