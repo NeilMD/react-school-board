@@ -1,10 +1,12 @@
 import React from "react";
 import { PlusSquare } from "lucide-react";
 
-const PostButton = () => {
+const PostButton = ({ onClick }) => {
   return (
     <div>
-      <button className="flex h-[40px] w-[100px] cursor-pointer items-center justify-center gap-1 rounded-[20px] bg-sky-600 p-2 text-[1rem] font-medium font-normal text-[#ffffff] shadow-sm">
+      <button
+        onClick={onClick}
+        className="flex h-[40px] w-[100px] cursor-pointer items-center justify-center gap-1 rounded-[20px] bg-sky-600 p-2 text-[1rem] font-medium font-normal text-[#ffffff] shadow-sm">
         <PlusSquare className="h-6 w-6 text-[1rem] font-normal text-[#ffffff]" />
         POST
       </button>
