@@ -82,7 +82,7 @@ export function SharePost({ open, onClose }) {
             </div>
 
             {/* Title Section */}
-            <div>
+            <div className="w-full">
               <input
                 type="text"
                 id="title"
@@ -90,14 +90,14 @@ export function SharePost({ open, onClose }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="text-thin ml-3 w-[95%] rounded-xl bg-gray-100 p-4 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="text-thin mx-3 w-[98.5%] rounded-xl bg-gray-100 p-4 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
             {/* Content Section */}
             <div>
               <textarea
-                className="ml-3 w-[95%] resize-none rounded-xl bg-gray-100 p-4 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="mx-3 w-[98.5%] resize-none rounded-xl bg-gray-100 p-4 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 placeholder="Share post in this group"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
@@ -119,7 +119,7 @@ export function SharePost({ open, onClose }) {
           </div>
 
           {/* Buttons for Image, Calendar, Location, Mention, and Post */}
-          <div className="flex items-center gap-4 font-normal">
+          <div className="flex justify-between gap-4 font-normal">
             <label
               htmlFor="fileInput"
               className="hover-effect location-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2">
