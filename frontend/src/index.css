@@ -90,6 +90,7 @@
   --font-roboto: "Roboto", sans-serif;
   --color-home: #eff6ff;
   --color-blue-border: #bfdbfe;
+  --color-form: #0288a9;
   --academix-blue: #bfdbfe;
   --color-text-base: #3f3f46;
 }
@@ -104,16 +105,16 @@
   }
 
   * {
-    @apply font-roboto box-border;
+    @apply box-border font-roboto;
   }
 
   .home-card {
-    @apply border-blue-border mb-4 h-fit rounded-[10px] border bg-white p-8 pb-2 drop-shadow-md;
+    @apply mb-4 h-fit rounded-[10px] border border-blue-border bg-white p-8 pb-2 drop-shadow-md;
   }
 
   #sidebar-list {
     li {
-      @apply hover:bg-(--color-home) mt-4 flex cursor-pointer items-center gap-4 rounded-3xl px-4 py-2 transition duration-300 ease-in-out;
+      @apply mt-4 flex cursor-pointer items-center gap-4 rounded-3xl px-4 py-2 transition duration-300 ease-in-out hover:bg-(--color-home);
     }
   }
 
@@ -126,6 +127,6 @@
   }
 
   .hover-effect {
-    @apply hover:bg-(--color-home) cursor-pointer transition duration-300 ease-in-out hover:text-gray-800;
+    @apply cursor-pointer transition duration-300 ease-in-out hover:bg-(--color-home) hover:text-gray-800;
   }
 }

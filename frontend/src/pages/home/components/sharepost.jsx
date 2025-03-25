@@ -57,26 +57,25 @@ export function SharePost({ open, onClose }) {
   };
 
   return (
-    <div className="">
-      <Dialog open={open} onClose={onClose}>
+    <div>
+      <Dialog
+        open={open}
+        onOpenChange={(isOpen) => {
+          if (!isOpen) {
+            onClose(); // Properly invoke the onClose function
+          }
+        }}>
         <DialogTrigger asChild>
           <button></button>
         </DialogTrigger>
         <DialogContent className="w-[900px] max-w-full overflow-y-auto rounded-xl bg-white p-4">
-          <DialogHeader>
-            <DialogTitle className="mt-3 ml-3 font-bold text-blue-400">
-              Share a post
-            </DialogTitle>
-          </DialogHeader>
           <div className="grid gap-4 py-4">
             {/* Select Category Section */}
-            <div className="ml-3 flex items-center">
-              <label
-                htmlFor="category"
-                className="mr-2 font-bold text-blue-400">
+            <div className="ml-3 flex items-center text-form">
+              <label htmlFor="category" className="mr-2 font-normal">
                 Category:
               </label>
-              <select id="category" className="text-blue-400">
+              <select id="category" className="font-light">
                 <option value="volunteer">Volunteer</option>
                 <option value="school">School</option>
               </select>
@@ -91,14 +90,14 @@ export function SharePost({ open, onClose }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="ml-3 w-[95%] rounded-xl bg-gray-100 p-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="text-thin ml-3 w-[95%] rounded-xl bg-gray-100 p-4 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
             {/* Content Section */}
             <div>
               <textarea
-                className="ml-3 w-[95%] resize-none rounded-xl bg-gray-100 p-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="ml-3 w-[95%] resize-none rounded-xl bg-gray-100 p-4 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 placeholder="Share post in this group"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
@@ -114,13 +113,13 @@ export function SharePost({ open, onClose }) {
                 placeholder="Tags"
                 value={tags}
                 onChange={(e) => setTags(e.target.value)}
-                className="ml-3 w-[47%] rounded-xl bg-gray-100 p-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="ml-3 w-[47%] rounded-xl bg-gray-100 p-4 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
           </div>
 
           {/* Buttons for Image, Calendar, Location, Mention, and Post */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 font-normal">
             <label
               htmlFor="fileInput"
               className="hover-effect location-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2">
