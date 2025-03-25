@@ -14,10 +14,10 @@ import TrendDropdown from "./components/trenddropdown";
 function Home() {
   return (
     <div className="relative flex h-fit min-h-full flex-col bg-(--color-home)">
-      <header>
+      <header className="fixed top-0 z-50 w-full">
         <NavHeader />
       </header>
-      <main className="mx-10 mt-10 flex grow flex-row gap-10">
+      <main className="mx-10 mt-[114px] flex grow flex-row gap-10">
         <div className="max-w-[282px] basis-1/10">
           <Sidebar />
         </div>

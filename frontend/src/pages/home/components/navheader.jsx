@@ -23,7 +23,7 @@ function NavHeader() {
         />
         <Search className="transition-default color-gray color-gray-100 absolute inset-y-1 right-0 mx-3 stroke-2 text-gray-400 peer-focus:text-gray-600" />
       </div>
-      <div className="mx-4 flex basis-1/3 justify-end">
+      <div className="ml-4 flex basis-1/3 justify-end">
         <Popover>
           <PopoverTrigger>
             <div className="group transition-default cursor-pointer rounded-full border border-transparent bg-gray-200 p-2 hover:border-gray-300 hover:bg-gray-100">
