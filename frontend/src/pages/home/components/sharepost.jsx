@@ -60,7 +60,7 @@ export function SharePost() {
   };
 
   return (
-    <div className="home-card main-share-post-container flex max-w-[800px] cursor-pointer flex-col space-y-2 p-4">
+    <div className="home-card main-share-post-container flex w-[800px] cursor-pointer flex-col space-y-2 p-4">
       <div className="flex w-full items-center space-x-4">
         {/* All of the buttons open up the dialog box */}
         {/* Text Area for share a post*/}

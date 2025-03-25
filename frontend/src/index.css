@@ -96,11 +96,11 @@
 
 @layer base {
   body {
-    @apply h-full w-full justify-center bg-(--color-home);
+    @apply h-full w-full;
   }
 
   #root {
-    @apply flex h-screen w-full justify-center;
+    @apply flex h-screen w-full;
   }
 
   * {
