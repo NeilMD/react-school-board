@@ -18,17 +18,12 @@ export function SharePost({ open, onClose }) {
   };
 
   // manages the state of the post
-  const [posts, setPosts] = useState(() => {
-    return []; // will be passed into the local storage for now since no db
-  });
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
   const [image, setImage] = useState(null);
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
-
-  useEffect(() => {}, [posts]);
 
   // creates new post and resets the states back to the original state
   const handlePostSubmit = async () => {
@@ -58,7 +53,6 @@ export function SharePost({ open, onClose }) {
       courses: [], // Replace with the array of courses if applicable
     };
 
-    setPosts([newPost, ...posts]);
     setContent("");
     setTitle("");
     setTags("");

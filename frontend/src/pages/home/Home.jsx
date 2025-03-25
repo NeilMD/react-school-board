@@ -10,9 +10,11 @@ import postbutton from "./components/postbutton";
 import PostButton from "./components/postbutton";
 import TagDropdown from "./components/tagdropdown";
 import TrendDropdown from "./components/trenddropdown";
+import tryCatch from "@/utils/tryCatch";
 
 function Home() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [posts, setPosts] = useState();
 
   const handleDialogOpen = () => {
     setIsDialogOpen(true);
@@ -20,6 +22,32 @@ function Home() {
 
   const handleDialogClose = () => {
     setIsDialogOpen(false);
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    // Fetch posts using the tryCatch wrapper
+    const [response, fetchError] = await tryCatch(() =>
+      fetch("http://localhost:5001/api/post/view/all", {
+        method: "GET", // Specify the HTTP method
+      }),
+    );
+
+    const [resData, dataErr] = await tryCatch(() => response.json());
+
+    if (fetchError) {
+      // Handle error if fetch failed
+      setError(fetchError);
+      return;
+    }
+
+    if (response) {
+      // Handle successful response
+      setPosts(response.objData); // Assuming objData contains the posts
+    }
   };
 
   return (
