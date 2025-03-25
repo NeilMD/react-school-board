@@ -52,8 +52,8 @@ function loadModules(directory, label, passModules = true) {
   return loadedModules;
 }
 
-// Load Config
-modules.config = Object.assign({}, loadModules("./config", "Config"));
+// // Load Config
+// modules.config = Object.assign({}, loadModules("./config", "Config"));
 
 // Load Utils
 modules.util = Object.assign({}, loadModules("./utils", "Utils", false));
