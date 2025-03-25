@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { MessageSquareTextIcon } from "lucide-react";
 import { Bookmark } from "lucide-react";
 import { Calendar, Map } from "lucide-react";
+import Chloe from "@/assets/chloechoi.jpeg";
 import React from "react";
 
 function Post() {
@@ -14,7 +15,7 @@ function Post() {
       <div className="post-header flex w-full flex-row">
         <div className="flex basis-1/2 gap-2">
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarImage className="object-cover" src={Chloe} alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <div className="flex flex-col justify-center">

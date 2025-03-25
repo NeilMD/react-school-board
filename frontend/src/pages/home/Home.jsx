@@ -18,9 +18,9 @@ function Home() {
           <Sidebar />
         </div>
         <div className="flex basis-8/10 flex-col items-center">
-          <FormPost></FormPost>
+          <SharePost></SharePost>
 
-          <Separator className="mx-4 mt-4 mb-8 w-[800px] bg-(--academix-blue)" />
+          <Separator className="mx-4 mt-4 mb-8 w-[unset] bg-(--academix-blue)" />
           <Post />
           <Post />
           <Post />
