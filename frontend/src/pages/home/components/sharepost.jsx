@@ -1,5 +1,6 @@
 import { Calendar, Image, MapPin, AtSign } from "lucide-react";
 import React, { useState, useEffect } from "react";
+import tryCatch from "@/utils/tryCatch";
 import {
   Dialog,
   DialogContent,
@@ -30,20 +31,31 @@ export function SharePost({ open, onClose }) {
   useEffect(() => {}, [posts]);
 
   // creates new post and resets the states back to the original state
-  const handlePostSubmit = () => {
+  const handlePostSubmit = async () => {
     if (!content.trim()) return;
 
+    // const newPost = {
+    //   id: Date.now(),
+    //   userId: user.id,
+    //   userName: user.name,
+    //   userAvatar: user.avatar,
+    //   title,
+    //   content,
+    //   image,
+    //   location,
+    //   date,
+    //   timestamp: new Date().toLocaleString(),
+    // };
+
     const newPost = {
-      id: Date.now(),
-      userId: user.id,
-      userName: user.name,
-      userAvatar: user.avatar,
-      title,
-      content,
-      image,
-      location,
-      date,
-      timestamp: new Date().toLocaleString(),
+      authorId: "60b8d2956f4d4b1d4c8b4567", // Assuming user.id corresponds to "authorId"
+      authorType: "student", // You can change this if it's not always 'student'
+      postType: "question", // Set postType as "question" by default, or adjust as necessary
+      title, // Assuming the title is being passed as a variable
+      content, // Assuming content is being passed as a variable
+      tags: [], // You can replace this with an actual array of tags if you have them
+      programs: [], // Replace with the array of programs if applicable
+      courses: [], // Replace with the array of courses if applicable
     };
 
     setPosts([newPost, ...posts]);
@@ -53,7 +65,22 @@ export function SharePost({ open, onClose }) {
     setImage(null);
     setLocation("");
     setDate("");
-    setDialogOpen(false);
+
+    const [response, fetchError] = await tryCatch(async () => {
+      const res = await fetch("http://localhost:5001/api/post/add", {
+        method: "POST", // Specify the HTTP method
+        headers: {
+          "Content-Type": "application/json", // Set content type to JSON
+        },
+        body: JSON.stringify(newPost), // Convert requestData object to a JSON string
+      });
+      if (!res.ok) throw new Error("Network response was not ok");
+      return res.json();
+    });
+
+    // setDialogOpen(false);
+    console.log(newPost);
+    onClose();
   };
 
   return (
