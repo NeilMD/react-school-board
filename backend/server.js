@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const asyncHandler = require("express-async-handler");
 const joi = require("joi");
 const responseUtil = require("./utils/responseUtil");
+const cors = require("cors");
 
 // Module Init
 const modules = {
@@ -86,6 +87,11 @@ logger.info("===========================");
 logger.info("App Init");
 const app = express();
 app.use(express.json());
+
+// CORS
+app.use(cors({
+  origin: "http://localhost:5173"
+}))
 
 console.dir(modules.util.responseUtil);
 

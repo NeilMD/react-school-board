@@ -127,17 +127,71 @@ export function SearchableTagInput() {
 }
 
 export function AddPostButton() {
+    const handleClick = async () => {
+      const postData = {
+        authorId: "60b8d2956f4d4b1d4c8b4567",
+        authorType: "student",
+        postType: "question",
+        title: "How to improve my programming skills?",
+        content: "I want to become a better programmer. Any advice or resources?",
+        tags: ["programming", "learning", "advice"],
+        programs: ["Computer Science", "Software Engineering"],
+        courses: ["CS101", "CS102"],
+        comments: [
+          {
+            commentId: "60b8d2956f4d4b1d4c8b4568",
+            userId: "60b8d2956f4d4b1d4c8b4569",
+            content: "You can practice by working on open-source projects.",
+            createdAt: "2024-12-01T10:00:00.000Z",
+            markedAsHelpful: false,
+          },
+        ],
+        upvotes: 10,
+        downvotes: 2,
+        views: 150,
+        isResolved: false,
+        correctAnswerId: null,
+        isPinned: false,
+        isFlagged: false,
+        savedByUsers: [
+          "60b8d2956f4d4b1d4c8b4570",
+          "60b8d2956f4d4b1d4c8b4571",
+        ],
+      };
+  
+      try {
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+        const response = await fetch(`${API_BASE_URL}/api/post/add`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+        });
+  
+        if (!response.ok) throw new Error("Failed to add post");
+  
+        const result = await response.json();
+        console.log("Post added:", result);
+        alert("Post successfully added!");
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Something went wrong while adding the post.");
+      }
+    };
   
     return (
-        <div>
-            <button
-            className="flex items-center justify-between w-[120px] h-[40px] px-5 bg-[#061071] rounded-[20px] text-[#ffffff] font-medium shadow-sm"
-          >
-            <PlusSquare className="w-6 h-6 text-[#ffffff]" />
-            POST
-          </button>
-        </div>
+      <div>
+        <button
+          onClick={handleClick}
+          className="flex items-center justify-between w-[120px] h-[40px] px-5 bg-[#061071] rounded-[20px] text-[#ffffff] font-medium shadow-sm"
+        >
+          <PlusSquare className="w-6 h-6 text-[#ffffff]" />
+          POST
+        </button>
+      </div>
     );
-}
+  }
 
 
