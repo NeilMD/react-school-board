@@ -97,8 +97,10 @@ export function SharePost({ open, onClose }) {
                 Category:
               </label>
               <select id="category" className="font-light">
-                <option value="volunteer">Volunteer</option>
-                <option value="school">School</option>
+                <option value="question">Question</option>
+                <option value="networking">Networking</option>
+                <option value="course_feedback">Review</option>
+                <option value="announcement">Event</option>
               </select>
             </div>
 
@@ -111,14 +113,14 @@ export function SharePost({ open, onClose }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-                className="text-thin mx-3 w-[98.5%] rounded-xl bg-gray-100 p-4 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="text-thin mx-3 w-[98.5%] rounded-lg bg-gray-100 px-4 py-2 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
             {/* Content Section */}
             <div>
               <textarea
-                className="mx-3 w-[98.5%] resize-none rounded-xl bg-gray-100 p-4 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="mx-3 w-[98.5%] resize-none rounded-lg bg-gray-100 px-4 py-2 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 placeholder="Share post in this group"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
@@ -134,7 +136,7 @@ export function SharePost({ open, onClose }) {
                 placeholder="Tags"
                 value={tags}
                 onChange={(e) => setTags(e.target.value)}
-                className="ml-3 w-[47%] rounded-xl bg-gray-100 p-4 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="ml-3 w-[47%] rounded-lg bg-gray-100 px-4 py-2 placeholder:font-light focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
           </div>

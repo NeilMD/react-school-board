@@ -100,15 +100,7 @@ function Post({ postObj }) {
           </div>
         </div>
         <div className="max-h-dvh transition-all duration-500 ease-in-out">
-          {isInputOpen && (
-            <motion.div
-              initial={{ opacity: 0, maxHeight: 0 }}
-              animate={{ opacity: 1, maxHeight: "3000px" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 1, ease: "easeInOut" }}>
-              <CommentInput />
-            </motion.div>
-          )}
+          {isInputOpen && <CommentInput postId={postObj._id} />}
         </div>
       </div>
     );
