@@ -9,6 +9,8 @@ module.exports = ({ logger, validator }) => {
       errMsg = validator.commentValidator.edit(req.body);
     } else if (req.originalUrl === "/api/comment/delete") {
       errMsg = validator.commentValidator.delete(req.body);
+    } else if (req.originalUrl === "/api/comment/getComments") {
+      errMsg = validator.commentValidator.getComments(req.body);
     }
 
     const { error } = errMsg;

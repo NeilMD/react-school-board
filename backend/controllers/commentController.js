@@ -2,6 +2,24 @@ module.exports = ({ asyncHandler, logger, models }) => {
   let commentController = {};
   let Comment = models.Comment;
 
+  commentController.getComments = asyncHandler(async (req, res) => {
+    logger.info("commentController/getComments: START");
+
+    // Create a new Comment instance
+    const comments = await Comment.find({ postId: req.body.postId });
+
+    if (comments.length > 0) {
+      res.locals.objResult.numCode = 0;
+      res.locals.objResult.objData = comments;
+      res.locals.objResult.objSuccess = "Comments fetched successfully";
+    } else {
+      res.locals.objResult.numCode = 1;
+      res.locals.objResult.objError = "No comments found for this post";
+    }
+    logger.info("commentController/getComments: END");
+    res.status(201).json(res.locals.objResult);
+  });
+
   commentController.add = asyncHandler(async (req, res) => {
     logger.info("commentController/add: START");
 

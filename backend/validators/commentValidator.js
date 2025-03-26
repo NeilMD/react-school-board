@@ -1,6 +1,24 @@
 module.exports = ({ logger, joi }) => {
   let commentValidation = {};
 
+  commentValidation.getComments = (postData) => {
+    logger.info("commentValidation/getComments : START");
+    // joi Validation Schema for Post
+    const commentValidationSchema = joi.object({
+      postId: joi
+        .string()
+        .required()
+        .regex(/^[0-9a-fA-F]{24}$/)
+        .messages({
+          "string.pattern.base": "Invalid ObjectId format for postId.",
+          "any.required": "postId is required.",
+        }), // Validate postId as ObjectId
+    });
+
+    logger.info("commentValidation/getComments: END");
+    return commentValidationSchema.validate(postData);
+  };
+
   commentValidation.add = (postData) => {
     logger.info("commentValidation/add : START");
     // joi Validation Schema for Post

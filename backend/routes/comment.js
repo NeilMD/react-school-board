@@ -26,5 +26,11 @@ module.exports = ({
     controllers.commentController.delete
   );
 
+  // POST /api/post/getComments
+  router.post(
+    "/getComments",
+    middleware.commentMiddleware,
+    controllers.commentController.getComments
+  );
   return router;
 };
