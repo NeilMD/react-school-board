@@ -11,6 +11,7 @@ import PostButton from "./components/postbutton";
 import TagDropdown from "./components/tagdropdown";
 import TrendDropdown from "./components/trenddropdown";
 import tryCatch from "@/utils/tryCatch";
+import { AnimatePresence, motion } from "framer-motion";
 
 function Home() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -59,7 +60,12 @@ function Home() {
         <header className="fixed top-0 z-50 w-full">
           <NavHeader />
         </header>
-        <SharePost open={isDialogOpen} onClose={handleDialogClose} />
+        <SharePost
+          posts={posts}
+          setPosts={setPosts}
+          open={isDialogOpen}
+          onClose={handleDialogClose}
+        />
         <main className="mx-10 mt-[114px] flex grow flex-row gap-10">
           <div className="max-w-[282px] min-w-[260px] basis-1/10">
             <div className="fixed">
@@ -77,11 +83,24 @@ function Home() {
             <div
               id="post-section"
               className="flex flex-col items-center gap-y-5">
-              {posts && posts.length > 0 ? (
-                posts.map((post) => <Post key={post._id} postObj={post} />)
-              ) : (
-                <></>
-              )}
+              <AnimatePresence initial={true}>
+                {posts && posts.length > 0 ? (
+                  posts.map((post) => {
+                    return (
+                      <motion.div
+                        key={post._id} // Move the key here
+                        initial={{ opacity: 0, y: 25 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7 }}
+                        viewport={{ once: true }}>
+                        <Post postObj={post} />
+                      </motion.div>
+                    );
+                  })
+                ) : (
+                  <></>
+                )}
+              </AnimatePresence>
             </div>
           </div>
           <div className="max-w-[292px] min-w-[275px] basis-1/10">

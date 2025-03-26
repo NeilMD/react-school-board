@@ -16,9 +16,9 @@ function Post({ postObj }) {
   const postDataRef = useRef({
     name: faker.person.fullName(),
     avatar: faker.image.personPortrait(),
-    title: faker.word.words({ count: { min: 5, max: 10 } }),
+    title: postObj.title || faker.word.words({ count: { min: 5, max: 10 } }),
     location: `${faker.location.state()}, ${faker.location.country()}`,
-    content: faker.lorem.paragraph(),
+    content: postObj.content || faker.lorem.paragraph(),
   });
 
   // Define PostHeader inline

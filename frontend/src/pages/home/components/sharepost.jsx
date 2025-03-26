@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-export function SharePost({ open, onClose }) {
+export function SharePost({ posts, setPosts, open, onClose }) {
   // temp user for testing -- will need to fetch json for users later
   const user = {
     id: 1,
@@ -73,7 +73,7 @@ export function SharePost({ open, onClose }) {
     });
 
     // setDialogOpen(false);
-    console.log(newPost);
+    setPosts([response.objData, ...posts]);
     onClose();
   };
 
