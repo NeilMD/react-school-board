@@ -58,7 +58,7 @@ function Home() {
         id="main"
         className="relative flex h-fit min-h-full flex-col bg-(--color-home)">
         <header className="fixed top-0 z-50 w-full">
-          <NavHeader />
+          <NavHeader posts={posts} setPosts={setPosts} />
         </header>
         <SharePost
           posts={posts}

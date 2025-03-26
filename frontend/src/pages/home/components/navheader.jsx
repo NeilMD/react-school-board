@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AcademixLogo from "@/assets/academix.svg";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
@@ -7,9 +7,33 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { debounce } from "@/utils/debounce";
 import { Bell } from "lucide-react";
 
-function NavHeader() {
+function NavHeader({ setPosts, posts }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+  // Search function to filter posts
+  const handleSearch = debounce((term) => {
+    if (!term) {
+      setFilteredPosts(posts);
+      return;
+    }
+    const lowercasedTerm = term.toLowerCase();
+    const filtered = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(lowercasedTerm) ||
+        post.content.toLowerCase().includes(lowercasedTerm),
+    );
+    setPosts(filtered);
+  }, 500); // 500ms debounce delay
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    handleSearch(value);
+  };
   return (
     <div className="z-10 flex h-fit w-full items-center bg-white px-10 pt-4 pb-4">
       <div className="basis-1/3">
@@ -20,6 +44,7 @@ function NavHeader() {
           className="peer transition-default w-full rounded-2xl border border-gray-400 bg-gray-100 px-2 py-1 ring-0 placeholder:font-light focus:ring-2 focus:ring-cyan-300 focus:outline-none"
           type="text"
           placeholder="Search"
+          onChange={handleChange}
         />
         <Search className="transition-default color-gray color-gray-100 absolute inset-y-1 right-0 mx-3 stroke-2 text-gray-400 peer-focus:text-gray-600" />
       </div>

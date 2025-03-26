@@ -33,7 +33,7 @@ const CommentInput = ({ postId }) => {
       if (!res.ok) throw new Error("Network response was not ok");
       return res.json();
     });
-    setComments([response.objData, ...comments]);
+    setComments([...comments, response.objData]);
     // setDialogOpen(false);
     console.log(newComment);
   };
@@ -109,7 +109,9 @@ const CommentInput = ({ postId }) => {
         <div id="comments">
           {comments && comments.length > 0 ? (
             comments.map((comment) => (
-              <Comment key={comment._id} commentObj={comment} />
+              <>
+                <Comment key={comment._id} commentObj={comment} />
+              </>
             ))
           ) : (
             <></>
