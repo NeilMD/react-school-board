@@ -87,6 +87,11 @@ const CommentInput = ({ postId }) => {
               onChange={(e) => {
                 setContent(e.target.value);
               }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  submitComment();
+                }
+              }}
               required
               className="text-input:font-light w-full rounded-md bg-gray-100 py-2 pr-4 pl-15 text-base placeholder:font-light focus:ring-1 focus:ring-blue-500 focus:outline-none"
             />
