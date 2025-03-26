@@ -20,10 +20,11 @@ function NavHeader({ unfilteredPost, setPosts, posts }) {
       return;
     }
     const lowercasedTerm = term.toLowerCase();
+    console.log(unfilteredPost);
     const filtered = unfilteredPost.filter(
       (post) =>
-        post.title.toLowerCase().includes(lowercasedTerm) ||
-        post.content.toLowerCase().includes(lowercasedTerm),
+        post?.title.toLowerCase().includes(lowercasedTerm) ||
+        post?.content.toLowerCase().includes(lowercasedTerm),
     );
     setPosts(filtered);
   }, 500); // 500ms debounce delay

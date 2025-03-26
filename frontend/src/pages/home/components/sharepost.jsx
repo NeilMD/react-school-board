@@ -48,7 +48,7 @@ export function SharePost({ posts, setPosts, open, onClose }) {
       postType: "question", // Set postType as "question" by default, or adjust as necessary
       title, // Assuming the title is being passed as a variable
       content, // Assuming content is being passed as a variable
-      tags: [], // You can replace this with an actual array of tags if you have them
+      tags: tags.split(","), // You can replace this with an actual array of tags if you have them
       programs: [], // Replace with the array of programs if applicable
       courses: [], // Replace with the array of courses if applicable
     };

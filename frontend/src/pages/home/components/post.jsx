@@ -47,7 +47,7 @@ function Post({ postObj }) {
               "rounded-[20px] border-none bg-cyan-600 px-5 font-light text-white"
             }
             variant="outline">
-            #Volunteer
+            #{postObj.tags[0] || faker.company.buzzNoun()}
           </Badge>
         </div>
       </div>
