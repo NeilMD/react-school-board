@@ -26,5 +26,8 @@ module.exports = ({
     controllers.postController.delete
   );
 
+  // POST /api/post/view/all
+  router.get("/view/all", controllers.postController.viewAll);
+
   return router;
 };

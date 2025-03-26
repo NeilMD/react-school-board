@@ -2,6 +2,24 @@ module.exports = ({ asyncHandler, logger, models }) => {
   let postController = {};
   let Post = models.Post;
 
+  postController.viewAll = asyncHandler(async (req, res) => {
+    logger.info("postController/viewAll: START");
+
+    const posts = await Post.find(); // Fetch all posts from the database
+
+    if (posts.length > 0) {
+      res.locals.objResult.numCode = 0;
+      res.locals.objResult.objData = posts;
+      res.locals.objResult.objSucess = "Successfully retrieved all posts";
+    } else {
+      res.locals.objResult.numCode = 1;
+      res.locals.objResult.objSucess = "No posts found";
+    }
+
+    logger.info("postController/viewAll: END");
+    res.status(201).json(res.locals.objResult);
+  });
+
   postController.add = asyncHandler(async (req, res) => {
     logger.info("postController/add: START");
 

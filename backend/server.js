@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+const cors = require("cors");
 const dotenv = require("dotenv").config();
 const pino = require("pino");
 const pretty = require("pino-pretty");
@@ -86,6 +87,7 @@ logger.info("===========================");
 logger.info("App Init");
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 console.dir(modules.util.responseUtil);
 

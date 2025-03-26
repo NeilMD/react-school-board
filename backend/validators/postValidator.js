@@ -20,8 +20,8 @@ module.exports = ({ logger, joi }) => {
         .string()
         .valid("question", "networking", "course_feedback", "announcement")
         .required(),
-      title: joi.string().min(3).max(100).required(),
-      content: joi.string().min(10).required(),
+      title: joi.string().min(1).max(100).required(),
+      content: joi.string().min(1).required(),
       tags: joi.array().items(joi.string().min(1)),
       programs: joi.array().items(joi.string().min(1)),
       courses: joi.array().items(joi.string().min(1)),
@@ -63,8 +63,8 @@ module.exports = ({ logger, joi }) => {
         .string()
         .valid("question", "networking", "course_feedback", "announcement")
         .required(),
-      title: joi.string().min(3).max(100).required(),
-      content: joi.string().min(10).required(),
+      title: joi.string().min(1).max(100).required(),
+      content: joi.string().min(1).required(),
       tags: joi.array().items(joi.string().min(1)),
       programs: joi.array().items(joi.string().min(1)),
       courses: joi.array().items(joi.string().min(1)),
