@@ -6,9 +6,7 @@ module.exports = ({ asyncHandler, logger, models }) => {
     logger.info("commentController/getComments: START");
 
     // Create a new Comment instance
-    const comments = await Comment.find({ postId: req.body.postId }).sort({
-      updatedAt: -1,
-    });
+    const comments = await Comment.find({ postId: req.body.postId });
 
     if (comments.length > 0) {
       res.locals.objResult.numCode = 0;

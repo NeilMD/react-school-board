@@ -5,7 +5,9 @@ module.exports = ({ asyncHandler, logger, models }) => {
   postController.viewAll = asyncHandler(async (req, res) => {
     logger.info("postController/viewAll: START");
 
-    const posts = await Post.find(); // Fetch all posts from the database
+    const posts = await Post.find().sort({
+      updatedAt: -1,
+    }); // Fetch all posts from the database
 
     if (posts.length > 0) {
       res.locals.objResult.numCode = 0;
