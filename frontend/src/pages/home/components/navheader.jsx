@@ -10,17 +10,17 @@ import {
 import { debounce } from "@/utils/debounce";
 import { Bell } from "lucide-react";
 
-function NavHeader({ setPosts, posts }) {
+function NavHeader({ unfilteredPost, setPosts, posts }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState(posts);
   // Search function to filter posts
   const handleSearch = debounce((term) => {
     if (!term) {
-      setFilteredPosts(posts);
+      setPosts(unfilteredPost);
       return;
     }
     const lowercasedTerm = term.toLowerCase();
-    const filtered = posts.filter(
+    const filtered = unfilteredPost.filter(
       (post) =>
         post.title.toLowerCase().includes(lowercasedTerm) ||
         post.content.toLowerCase().includes(lowercasedTerm),

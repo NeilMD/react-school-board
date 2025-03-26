@@ -16,6 +16,7 @@ import { AnimatePresence, motion } from "framer-motion";
 function Home() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [posts, setPosts] = useState();
+  const [unfilteredPost, setUnfilteredPost] = useState();
 
   const handleDialogOpen = () => {
     setIsDialogOpen(true);
@@ -46,8 +47,9 @@ function Home() {
     }
 
     if (response) {
-      console.log(resData);
       // Handle successful response
+      setUnfilteredPost(resData.objData);
+
       setPosts(resData.objData); // Assuming objData contains the posts
     }
   };
@@ -58,7 +60,11 @@ function Home() {
         id="main"
         className="relative flex h-fit min-h-full flex-col bg-(--color-home)">
         <header className="fixed top-0 z-50 w-full">
-          <NavHeader posts={posts} setPosts={setPosts} />
+          <NavHeader
+            unfilteredPost={unfilteredPost}
+            posts={posts}
+            setPosts={setPosts}
+          />
         </header>
         <SharePost
           posts={posts}
