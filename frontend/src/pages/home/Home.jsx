@@ -66,7 +66,7 @@ function Home() {
           open={isDialogOpen}
           onClose={handleDialogClose}
         />
-        <main className="mx-10 mt-[114px] flex w-[98dvw] grow flex-row gap-10">
+        <main className="mx-10 mt-[114px] flex max-w-dvw min-w-[94dvw] grow flex-row gap-10">
           <div className="max-w-[282px] min-w-[260px] basis-1/10">
             <div className="fixed">
               <Sidebar />
