@@ -7,19 +7,26 @@ import { Bookmark } from "lucide-react";
 import { Calendar, Map } from "lucide-react";
 import Chloe from "@/assets/chloechoi.jpeg";
 import React from "react";
+import { faker } from "@faker-js/faker";
 
-function Post() {
+function Post({ postObj }) {
   // Define PostHeader inline
-  const PostHeader = () => {
+  const PostHeader = ({ postObj }) => {
     return (
       <div className="post-header flex w-full flex-row">
         <div className="flex basis-1/2 gap-2">
           <Avatar>
-            <AvatarImage className="object-cover" src={Chloe} alt="@shadcn" />
+            <AvatarImage
+              className="object-cover"
+              src={faker.image.personPortrait()}
+              alt="@shadcn"
+            />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <div className="flex flex-col justify-center">
-            <span className="leading-[0.8] font-normal">Chloe Choi</span>
+            <span className="leading-[0.8] font-normal">
+              {faker.person.fullName()}
+            </span>
             <span className="font-lighter text-xs opacity-75">30 mins ago</span>
           </div>
         </div>
@@ -37,16 +44,14 @@ function Post() {
   };
 
   // Define PostBody inline
-  const PostBody = () => {
+  const PostBody = ({ postObj }) => {
     return (
       <div className="post-body">
-        <h5 className="mt-6 mb-3 text-[20px] font-bold text-cyan-600">
-          Make a Difference: Join Our School Volunteer Event!
+        <h5 className="mt-6 mb-3 text-[20px] font-bold text-cyan-600 capitalize">
+          {faker.word.words({ count: { min: 5, max: 10 } })}
         </h5>
         <span className="mt-3 mb-6 block leading-[1.5] font-light">
-          Hey SAIT students! 🎉 Looking for a way to give back, gain valuable
-          experience, and connect with amazing people? Join us for our
-          upcoming event!
+          {postObj.content}
         </span>
         <div className="mb-2 flex flex-row items-center gap-x-2">
           <Calendar className="opacity-50" size={24}></Calendar>
@@ -54,13 +59,15 @@ function Post() {
         </div>
         <div className="flex flex-row items-center gap-x-2">
           <Map className="opacity-50" size={24}></Map>
-          <span className="text-base font-light opacity-65">Main Campus</span>
+          <span className="text-base font-light opacity-65">
+            {`${faker.location.state()}, ${faker.location.country()}`}
+          </span>
         </div>
       </div>
     );
   };
 
-  const PostFooter = () => {
+  const PostFooter = ({ postObj }) => {
     return (
       <div>
         <Separator className="mt-6" />
@@ -79,10 +86,10 @@ function Post() {
   };
 
   return (
-    <div className="home-card max-w-[800px]">
-      <PostHeader /> {/* Inline usage of PostHeader */}
-      <PostBody /> {/* Inline usage of PostBody */}
-      <PostFooter />
+    <div className="home-card w-[800px]">
+      <PostHeader postObj={postObj} /> {/* Inline usage of PostHeader */}
+      <PostBody postObj={postObj} /> {/* Inline usage of PostBody */}
+      <PostFooter postObj={postObj} />
     </div>
   );
 }

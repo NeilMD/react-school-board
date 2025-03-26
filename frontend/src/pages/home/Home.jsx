@@ -45,8 +45,9 @@ function Home() {
     }
 
     if (response) {
+      console.log(resData);
       // Handle successful response
-      setPosts(response.objData); // Assuming objData contains the posts
+      setPosts(resData.objData); // Assuming objData contains the posts
     }
   };
 
@@ -76,11 +77,11 @@ function Home() {
             <div
               id="post-section"
               className="flex flex-col items-center gap-y-5">
-              <Post />
-              <Post />
-              <Post />
-              <Post />
-              <Post />
+              {posts && posts.length > 0 ? (
+                posts.map((post) => <Post key={post.id} postObj={post} />)
+              ) : (
+                <></>
+              )}
             </div>
           </div>
           <div className="max-w-[292px] min-w-[275px] basis-1/10">

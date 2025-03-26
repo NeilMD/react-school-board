@@ -140,7 +140,7 @@ export function SharePost({ open, onClose }) {
           </div>
 
           {/* Buttons for Image, Calendar, Location, Mention, and Post */}
-          <div className="flex justify-between gap-4 font-normal">
+          <div className="flex justify-between gap-4 font-light">
             <label
               htmlFor="fileInput"
               className="hover-effect location-icon hover-effect transition-default flex cursor-pointer items-center space-x-2 rounded-lg px-4 py-2">
@@ -177,7 +177,7 @@ export function SharePost({ open, onClose }) {
             </button>
             <button
               onClick={handlePostSubmit}
-              className="ml-[200px] flex cursor-pointer items-center space-x-2 rounded-xl bg-(--academix-blue) px-4 py-2 text-black">
+              className="ml-[200px] flex cursor-pointer items-center space-x-2 rounded-4xl bg-(--academix-blue) px-8 py-2 text-black">
               Post
             </button>
           </div>
