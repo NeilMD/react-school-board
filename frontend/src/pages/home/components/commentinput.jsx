@@ -4,11 +4,13 @@ import { MessageSquareTextIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { Cone } from "lucide-react";
 import tryCatch from "@/utils/tryCatch";
+import Comment from "./comment";
 
 const CommentInput = ({ postId }) => {
   const [content, setContent] = useState("");
+  const [comments, setComments] = useState([]);
 
-  const handlePostSubmit = async () => {
+  const submitComment = async () => {
     console.log("asd");
     if (!content.trim()) return;
 
@@ -31,10 +33,42 @@ const CommentInput = ({ postId }) => {
       if (!res.ok) throw new Error("Network response was not ok");
       return res.json();
     });
-
+    setComments([response.objData, ...comments]);
     // setDialogOpen(false);
     console.log(newComment);
   };
+
+  const getComments = async () => {
+    console.log(postId);
+    // Fetch posts using the tryCatch wrapper
+    const [response, fetchError] = await tryCatch(() =>
+      fetch("http://localhost:5001/api/comment/getComments", {
+        method: "POST", // Specify the HTTP method
+        headers: {
+          "Content-Type": "application/json", // Set the content type as JSON
+        },
+        body: JSON.stringify({
+          postId,
+        }),
+      }),
+    );
+
+    const [resData, dataErr] = await tryCatch(() => response.json());
+
+    if (fetchError) {
+      console.log(fetchError);
+    }
+
+    if (response) {
+      console.log(resData.objData);
+      // Handle successful response
+      setComments(resData.objData); // Assuming objData contains the posts
+    }
+  };
+
+  useEffect(() => {
+    getComments();
+  }, []);
 
   return (
     <>
@@ -48,7 +82,7 @@ const CommentInput = ({ postId }) => {
             <input
               type="text"
               id="title"
-              placeholder="Title"
+              placeholder="Leave a comment here..."
               value={content}
               onChange={(e) => {
                 setContent(e.target.value);
@@ -61,11 +95,20 @@ const CommentInput = ({ postId }) => {
 
           <div className="flex w-fit flex-1/10 justify-end">
             <div
-              onClick={handlePostSubmit}
+              onClick={submitComment}
               className="ml-4 w-fit rounded-full bg-blue-300 p-2 transition-opacity duration-300 ease-in-out hover:opacity-75">
               <Plus className="text-gray-600" strokeWidth={2} size={16.5} />
             </div>
           </div>
+        </div>
+        <div id="comments">
+          {comments && comments.length > 0 ? (
+            comments.map((comment) => (
+              <Comment key={comment._id} commentObj={comment} />
+            ))
+          ) : (
+            <></>
+          )}
         </div>
       </motion.div>
     </>

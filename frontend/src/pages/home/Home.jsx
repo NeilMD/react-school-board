@@ -78,7 +78,7 @@ function Home() {
               id="post-section"
               className="flex flex-col items-center gap-y-5">
               {posts && posts.length > 0 ? (
-                posts.map((post) => <Post key={post.id} postObj={post} />)
+                posts.map((post) => <Post key={post._id} postObj={post} />)
               ) : (
                 <></>
               )}
