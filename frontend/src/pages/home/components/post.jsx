@@ -6,10 +6,21 @@ import { MessageSquareTextIcon } from "lucide-react";
 import { Bookmark } from "lucide-react";
 import { Calendar, Map } from "lucide-react";
 import Chloe from "@/assets/chloechoi.jpeg";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { faker } from "@faker-js/faker";
+import CommentInput from "./commentinput";
+import { motion } from "framer-motion";
 
 function Post({ postObj }) {
+  // Use useRef to generate faker data only once and persist it across re-renders
+  const postDataRef = useRef({
+    name: faker.person.fullName(),
+    avatar: faker.image.personPortrait(),
+    title: faker.word.words({ count: { min: 5, max: 10 } }),
+    location: `${faker.location.state()}, ${faker.location.country()}`,
+    content: faker.lorem.paragraph(),
+  });
+
   // Define PostHeader inline
   const PostHeader = ({ postObj }) => {
     return (
@@ -18,14 +29,14 @@ function Post({ postObj }) {
           <Avatar>
             <AvatarImage
               className="object-cover"
-              src={faker.image.personPortrait()}
+              src={postDataRef.current.avatar}
               alt="@shadcn"
             />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <div className="flex flex-col justify-center">
             <span className="leading-[0.8] font-normal">
-              {faker.person.fullName()}
+              {postDataRef.current.name}
             </span>
             <span className="font-lighter text-xs opacity-75">30 mins ago</span>
           </div>
@@ -48,10 +59,10 @@ function Post({ postObj }) {
     return (
       <div className="post-body">
         <h5 className="mt-6 mb-3 text-[20px] font-bold text-cyan-600 capitalize">
-          {faker.word.words({ count: { min: 5, max: 10 } })}
+          {postDataRef.current.title}
         </h5>
         <span className="mt-3 mb-6 block leading-[1.5] font-light">
-          {postObj.content}
+          {postDataRef.current.content}
         </span>
         <div className="mb-2 flex flex-row items-center gap-x-2">
           <Calendar className="opacity-50" size={24}></Calendar>
@@ -60,19 +71,26 @@ function Post({ postObj }) {
         <div className="flex flex-row items-center gap-x-2">
           <Map className="opacity-50" size={24}></Map>
           <span className="text-base font-light opacity-65">
-            {`${faker.location.state()}, ${faker.location.country()}`}
+            {postDataRef.current.location}
           </span>
         </div>
       </div>
     );
   };
 
+  const [isInputOpen, setIsInputOpen] = useState(false);
+  // OnClick handler for toggling
+  const handleCommentToggle = () => {
+    setIsInputOpen(!isInputOpen);
+  };
   const PostFooter = ({ postObj }) => {
     return (
       <div>
         <Separator className="mt-6" />
         <div className="columns-2 divide-gray-100 py-2 text-center text-gray-500">
-          <div className="hover-effect flex justify-center gap-2 rounded-md py-2">
+          <div
+            onClick={handleCommentToggle}
+            className="hover-effect flex justify-center gap-2 rounded-md py-2">
             <MessageSquareTextIcon className="scale-x-[-1]" />
             Comment
           </div>
@@ -80,6 +98,17 @@ function Post({ postObj }) {
             <Bookmark />
             Save
           </div>
+        </div>
+        <div className="max-h-dvh transition-all duration-500 ease-in-out">
+          {isInputOpen && (
+            <motion.div
+              initial={{ opacity: 0, maxHeight: 0 }}
+              animate={{ opacity: 1, maxHeight: "3000px" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 1, ease: "easeInOut" }}>
+              <CommentInput />
+            </motion.div>
+          )}
         </div>
       </div>
     );
