@@ -55,11 +55,11 @@ function Home() {
   };
 
   return (
-    <>
+    <div className="flex h-fit w-dvw max-w-[99dvw] flex-col items-center justify-center overflow-x-hidden bg-(--color-home)">
       <div
         id="main"
-        className="relative flex h-fit min-h-full flex-col bg-(--color-home)">
-        <header className="fixed top-0 z-50 w-full">
+        className="relative flex h-fit min-h-full max-w-[1515px] flex-col bg-(--color-home)">
+        <header className="fixed top-0 z-50 w-full max-w-[1515px]">
           <NavHeader
             unfilteredPost={unfilteredPost}
             posts={posts}
@@ -72,13 +72,13 @@ function Home() {
           open={isDialogOpen}
           onClose={handleDialogClose}
         />
-        <main className="mx-10 mt-[114px] flex max-w-dvw min-w-[94dvw] grow flex-row gap-10">
+        <main className="mx-10 mt-[114px] flex max-w-[1515px] min-w-[94dvw] grow flex-row gap-10">
           <div className="max-w-[282px] min-w-[260px] basis-1/10">
             <div className="fixed">
               <Sidebar />
             </div>
           </div>
-          <div className="flex basis-8/10 flex-col items-center gap-y-5">
+          <div className="flex flex-col items-center gap-y-5">
             <div className="flex w-full justify-between">
               <div className="flex items-center gap-5">
                 <TrendDropdown />
@@ -117,7 +117,7 @@ function Home() {
         </main>
         <footer>footer</footer>
       </div>
-    </>
+    </div>
   );
 }
 
