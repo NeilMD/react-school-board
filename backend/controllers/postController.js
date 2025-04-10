@@ -22,6 +22,24 @@ module.exports = ({ asyncHandler, logger, models }) => {
     res.status(201).json(res.locals.objResult);
   });
 
+  postController.viewAllTags = asyncHandler(async (req, res) => {
+    logger.info("postController/viewAllTags: START");
+
+    const uniqueTags = await Post.distinct("tags");
+
+    if (uniqueTags.length > 0) {
+      res.locals.objResult.numCode = 0;
+      res.locals.objResult.objData = uniqueTags;
+      res.locals.objResult.objSucess = "Successfully retrieved all tags";
+    } else {
+      res.locals.objResult.numCode = 1;
+      res.locals.objResult.objSucess = "No posts found";
+    }
+
+    logger.info("postController/viewAllTags: END");
+    res.status(201).json(res.locals.objResult);
+  });
+
   postController.add = asyncHandler(async (req, res) => {
     logger.info("postController/add: START");
 

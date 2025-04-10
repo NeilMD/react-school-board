@@ -9,7 +9,14 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-export function SharePost({ posts, setPosts, open, onClose }) {
+export function SharePost({
+  posts,
+  setPosts,
+  open,
+  onClose,
+  unfilteredPost,
+  setUnfilteredPost,
+}) {
   // temp user for testing -- will need to fetch json for users later
   const user = {
     id: 1,
@@ -24,7 +31,8 @@ export function SharePost({ posts, setPosts, open, onClose }) {
   const [image, setImage] = useState(null);
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
-
+  const [course, setCourse] = useState("");
+  const [program, setProgram] = useState("");
   // creates new post and resets the states back to the original state
   const handlePostSubmit = async () => {
     if (!content.trim()) return;
@@ -74,6 +82,7 @@ export function SharePost({ posts, setPosts, open, onClose }) {
 
     // setDialogOpen(false);
     setPosts([response.objData, ...posts]);
+    setUnfilteredPost([response.objData, ...unfilteredPost]);
     onClose();
   };
 

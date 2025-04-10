@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { PlusCircle, Search, X, Square, CheckSquare } from "lucide-react";
+import { Search, X, Tag } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
 
-const TagDropdown = () => {
+const TagDropdown = ({ tags, setTags, selectedTags, setSelectedTags }) => {
+  console.log(tags);
   const [searchTerm, setSearchTerm] = useState("");
-  const [tags, setTags] = useState([]);
-  const [selectedTags, setSelectedTags] = useState(new Set());
 
   // ✅ Corrected handleAddTag to accept `e`
   const handleAddTag = (e) => {
@@ -43,13 +43,13 @@ const TagDropdown = () => {
     <Popover>
       <PopoverTrigger asChild>
         <button className="flex h-[40px] w-[100px] cursor-pointer items-center justify-center gap-1 rounded-[20px] bg-sky-600 p-2 text-[1rem] font-medium font-normal text-[#ffffff] shadow-sm">
-          <PlusCircle className="h-6 w-6 text-[1rem] text-[#ffffff]" />
+          <Tag className="h-6 w-6 text-[1rem] text-[#ffffff]" />
           TAGS
         </button>
       </PopoverTrigger>
       <PopoverContent
         align="start"
-        className="w-[300px] overflow-hidden rounded-[15px] border-none bg-[#DCEBFF] p-0 shadow-md">
+        className="w-[300px] overflow-hidden rounded-[15px] border-none p-0 shadow-md">
         <div className="relative p-2">
           <div className="flex items-center rounded-md border-none px-2">
             <Search className="mr-2 h-5 w-5 text-gray-400" />
@@ -76,28 +76,32 @@ const TagDropdown = () => {
           </div>
         </div>
         {tags.length > 0 && (
-          <div className="max-h-[150px] w-full overflow-y-auto rounded-b-[15px] bg-white p-2 shadow-md">
-            {tags.map((tag) => (
-              <div
-                key={tag}
-                className="flex h-[50px] w-full cursor-pointer items-center justify-between rounded-md px-4 text-[#000000]"
-                onClick={() => toggleSelectTag(tag)}>
-                {selectedTags.has(tag) ? (
-                  <CheckSquare className="h-5 w-5 text-[#061071]" />
-                ) : (
-                  <Square className="h-5 w-5 text-gray-400" />
-                )}
-                <span className="text-[14px]">{tag}</span>
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    removeTag(tag);
-                  }}>
-                  <X className="h-5 w-5 cursor-pointer text-gray-400" />
-                </button>
-              </div>
-            ))}
+          <div className="flex max-h-[150px] w-full flex-col gap-y-2 overflow-y-auto rounded-b-[15px] bg-white px-2 pt-2 pb-6 shadow-md">
+            {tags.map((tag) => {
+              const isSelected = selectedTags.has(tag);
+              const checkboxId = `tag-${tag}`;
+
+              return (
+                <div
+                  key={tag}
+                  className={`flex h-[50px] w-full cursor-pointer items-center gap-4 rounded-md px-4 py-2 text-[#000000] transition hover:bg-gray-100 ${
+                    isSelected ? "bg-cyan-100" : ""
+                  }`}
+                  onClick={() => toggleSelectTag(tag)}>
+                  <Checkbox
+                    id={checkboxId}
+                    checked={isSelected}
+                    onCheckedChange={() => toggleSelectTag(tag)}
+                    className="rounded-xs border-1"
+                  />
+                  <label
+                    htmlFor={checkboxId}
+                    className="cursor-pointer text-sm leading-none font-light">
+                    {tag}
+                  </label>
+                </div>
+              );
+            })}
           </div>
         )}
       </PopoverContent>

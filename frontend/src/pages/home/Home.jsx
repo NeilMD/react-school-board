@@ -12,10 +12,13 @@ import TagDropdown from "./components/tagdropdown";
 import TrendDropdown from "./components/trenddropdown";
 import tryCatch from "@/utils/tryCatch";
 import { AnimatePresence, motion } from "framer-motion";
+import { debounce } from "@/utils/debounce";
 
 function Home() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState(new Set());
   const [unfilteredPost, setUnfilteredPost] = useState();
 
   const handleDialogOpen = () => {
@@ -27,8 +30,32 @@ function Home() {
   };
 
   useEffect(() => {
+    fetchTags();
     fetchPosts();
   }, []);
+
+  // Filter posts based on selected tags
+  const handleTagFilter = debounce((selected) => {
+    if (!selected || selected.size === 0) {
+      setPosts(unfilteredPost); // show all if no tag selected
+      return;
+    }
+
+    const selectedArray = Array.from(selected);
+
+    const filtered = unfilteredPost.filter((post) =>
+      post?.tags?.some((tag) => selectedArray.includes(tag)),
+    );
+
+    setPosts(filtered);
+  }, 500); // 300ms debounce delay
+
+  // Call this when tags are selected/unselected
+  useEffect(() => {
+    if (unfilteredPost) {
+      handleTagFilter(selectedTags);
+    }
+  }, [selectedTags, unfilteredPost]);
 
   const fetchPosts = async () => {
     // Fetch posts using the tryCatch wrapper
@@ -54,6 +81,26 @@ function Home() {
     }
   };
 
+  const fetchTags = async () => {
+    // Fetch posts using the tryCatch wrapper
+    const [response, fetchError] = await tryCatch(() =>
+      fetch("http://localhost:5001/api/post/view/tags", {
+        method: "GET", // Specify the HTTP method
+      }),
+    );
+
+    const [resData, dataErr] = await tryCatch(() => response.json());
+    if (fetchError) {
+      // Handle error if fetch failed
+      setError(fetchError);
+      return;
+    }
+
+    if (response) {
+      setTags(resData.objData); // Assuming objData contains the posts
+    }
+  };
+
   return (
     <div className="flex h-fit w-[99dvw] flex-col items-center justify-center overflow-x-hidden bg-(--color-home)">
       <div
@@ -71,6 +118,8 @@ function Home() {
           setPosts={setPosts}
           open={isDialogOpen}
           onClose={handleDialogClose}
+          unfilteredPost={unfilteredPost}
+          setUnfilteredPost={setUnfilteredPost}
         />
         <main className="mx-10 mt-[114px] flex max-w-[1515px] min-w-[94dvw] grow flex-row gap-10 overflow-hidden">
           <div className="max-w-[282px] min-w-[260px] basis-1/10">
@@ -78,11 +127,15 @@ function Home() {
               <Sidebar />
             </div>
           </div>
-          <div className="flex flex-col items-center gap-y-5">
+          <div className="flex basis-[800px] flex-col items-center gap-y-5">
             <div className="flex w-full justify-between">
               <div className="flex items-center gap-5">
-                <TrendDropdown />
-                <TagDropdown />
+                <TagDropdown
+                  tags={tags}
+                  setTags={setTags}
+                  selectedTags={selectedTags}
+                  setSelectedTags={setSelectedTags}
+                />
               </div>
               <PostButton onClick={handleDialogOpen} />
             </div>

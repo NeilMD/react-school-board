@@ -28,6 +28,8 @@ module.exports = ({
 
   // POST /api/post/view/all
   router.get("/view/all", controllers.postController.viewAll);
+  // POST /api/post/view/all
+  router.get("/view/tags", controllers.postController.viewAllTags);
 
   return router;
 };

@@ -19,8 +19,9 @@ function Post({ postObj }) {
     title: postObj.title || faker.word.words({ count: { min: 5, max: 10 } }),
     location: `${faker.location.state()}, ${faker.location.country()}`,
     content: postObj.content || faker.lorem.paragraph(),
+    tag: postObj?.tags[0] || faker.company.buzzNoun(),
   });
-
+  console.log(postObj.tags[0]);
   // Define PostHeader inline
   const PostHeader = ({ postObj }) => {
     return (
@@ -47,7 +48,7 @@ function Post({ postObj }) {
               "rounded-[20px] border-none bg-cyan-600 px-5 font-light text-white"
             }
             variant="outline">
-            #{postObj.tags[0] || faker.company.buzzNoun()}
+            #{postDataRef.current.tag}
           </Badge>
         </div>
       </div>
@@ -61,7 +62,7 @@ function Post({ postObj }) {
         <h5 className="mt-6 mb-3 text-[20px] font-bold text-cyan-600 capitalize">
           {postDataRef.current.title}
         </h5>
-        <span className="mt-3 mb-6 block leading-[1.5] font-light">
+        <span className="mt-3 mb-6 block leading-[1.5] font-light whitespace-pre-wrap">
           {postDataRef.current.content}
         </span>
         <div className="mb-2 flex flex-row items-center gap-x-2">
